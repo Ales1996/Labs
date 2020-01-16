@@ -1,0 +1,41 @@
+mkdir docker_project_apl
+cd docker_project_apl
+apt-get install docker
+sudo docker pull nginx 
+sudo mkdir nginx
+cd nginx
+sudo mkdir etc
+docker run --name docker_nginx -p 8080:80 –d nginx
+sudo docker cp -a 23fc4b446212:/etc/nginx/ /home/docker_project_apl/nginx/etc/
+sudo mv nginx/* .
+sudo docker rm 23fc4b446212 -f
+sudo docker run --name docker_nginx -v /home/docker_project_apl/nginx/etc:/etc/nginx -p 8080:80 -d nginx
+curl localhost:8080
+sudo docker stop ea6afb83dd05
+
+EXAMPLE
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
