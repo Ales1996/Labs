@@ -1,0 +1,21 @@
+sudo mkdir boxubuntu
+cd boxubuntu/
+sudo vim boxubuntu.json
+packer build boxubuntu.json
+vagrant box add --name ubuntuapl boxubuntu/package.box
+
+
+
+boxubuntu.json
+
+{
+"builders": [
+{
+"communicator": "ssh",
+"source_path": "bento/ubuntu-14.04",
+"provider": "virtualbox",
+"add_force": true,
+"type": "vagrant"
+}
+]
+}
